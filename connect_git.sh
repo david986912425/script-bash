@@ -1,7 +1,13 @@
 #!/bin/bash
 
+# Comprobar si se proporcionó un parámetro de correo electrónico
+if [ -z "$1" ]; then
+    echo "Uso: $0 <email>"
+    exit 1
+fi
+
 # Variables
-EMAIL="tu_email@example.com"
+EMAIL="$1"
 
 # Paso 1: Generar una clave SSH si no existe
 if [ ! -f ~/.ssh/id_rsa ]; then
