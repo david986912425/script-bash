@@ -24,5 +24,13 @@ else
   install_docker
 fi
 
+
+if groups $USER | grep &>/dev/null '\bdocker\b'; then
+  echo "El usuario $USER ya está en el grupo docker."
+else
+  sudo usermod -a -G docker $USER
+  echo "El usuario $USER ha sido agregado al grupo docker."
+fi
+
 docker --version
 docker compose version
