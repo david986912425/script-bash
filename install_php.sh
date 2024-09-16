@@ -6,10 +6,8 @@ if [ "$PHP_VERSION" == "PHP 8.1" ]; then
     echo "PHP 8.1 ya está instalado."
 else
     echo "PHP 8.1 no está instalado. Iniciando proceso de instalación..."
-
     sudo apt update
     sudo apt upgrade -y
-
     sudo apt install software-properties-common ca-certificates lsb-release apt-transport-https -y
 
     sudo add-apt-repository ppa:ondrej/php -y
