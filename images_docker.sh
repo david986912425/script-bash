@@ -1,17 +1,11 @@
 #!/bin/bash
 
-mkdir -p imagesDocker
+mkdir -p ~/imagesDocker && cd ~/imagesDocker
 
-cd imagesDocker
+wget --header='Host: drive.usercontent.google.com' --header='User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36' --header='Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8' --header='Accept-Language: es-ES,es;q=0.9' --header='Cookie: NID=517=jS3rxCy4ZLFZZiFLfgX76sjAo4Tx7xqk4hB-fSI-x6XKIcdXtaO0KD7Yemw6bhNwIBki7__XzrWgneG_g_aqxTAcwLvqN10lA7CZ3ouwcd_dlGXCAsMqVnUpIuJyLwrbXmZw3V0c3UT0Z3pR1siJLL6CC3ObvGaPcXdG1K4RZiXURm7NDQ' --header='Connection: keep-alive' 'https://drive.usercontent.google.com/download?id=1O7QE__u3pTOyws1LoUoErK8f6dp7Gbg4&export=download&confirm=t&uuid=dda8edb7-2704-4005-8bfe-44bccdc6ddbc' -c -O 'idbi-images.zip'
 
-wget --header="Host: drive.usercontent.google.com" --header="User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" --header="Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7" --header="Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6" --header="Cookie: NID=514=lp1Ekam8XnBJDupWpqWxBo2jPcVao7wzv5W7m_PiawERNA_zrxW5rZV6Ib6pUFJqZ38CKv8bts3sQP3sw8bwTia35DFF2L2rsB0dVXrAk-hsstJblMokicOv-IEPYrVvUsMtNmultXUe1o9tkzya2h00bF0hOz7_20D2ikHeDPrH7vI" --header="Connection: keep-alive" "https://drive.usercontent.google.com/download?id=1IqymhOypxCe0goFOVp7UNc9Y9w6tovuP&export=download&confirm=t&uuid=76fb1a45-1bd0-4ff1-8876-a41f8fc30068" -c -O 'idbi-mariadb.tar'
+unzip idbi-images.zip
 
-wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1NuO3zNT-SA9oaelmjHGDqB8NYScYW3pB' -O 'idbi-nginx.tar'
-
-wget --header="Host: drive.usercontent.google.com" --header="User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" --header="Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7" --header="Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6" --header="Cookie: NID=514=lp1Ekam8XnBJDupWpqWxBo2jPcVao7wzv5W7m_PiawERNA_zrxW5rZV6Ib6pUFJqZ38CKv8bts3sQP3sw8bwTia35DFF2L2rsB0dVXrAk-hsstJblMokicOv-IEPYrVvUsMtNmultXUe1o9tkzya2h00bF0hOz7_20D2ikHeDPrH7vI" --header="Connection: keep-alive" "https://drive.usercontent.google.com/download?id=1NRefGCv5iLgdztHB4zJI_4TRCbOM2QGM&export=download&confirm=t&uuid=293510f3-e1a5-4b91-96c9-223a93f82944" -c -O 'idbi-php-fpm.tar'
-
-wget --header="Host: drive.usercontent.google.com" --header="User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" --header="Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7" --header="Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6" --header="Cookie: NID=514=lp1Ekam8XnBJDupWpqWxBo2jPcVao7wzv5W7m_PiawERNA_zrxW5rZV6Ib6pUFJqZ38CKv8bts3sQP3sw8bwTia35DFF2L2rsB0dVXrAk-hsstJblMokicOv-IEPYrVvUsMtNmultXUe1o9tkzya2h00bF0hOz7_20D2ikHeDPrH7vI" --header="Connection: keep-alive" "https://drive.usercontent.google.com/download?id=1LKTwmFVZTQ-Rg580ygK1P8c7w_hqRdyS&export=download&confirm=t&uuid=f4c2ff47-e562-41b1-9d1a-9b55209bd961" -c -O 'idbi-redis.tar'
-
-wget --header="Host: drive.usercontent.google.com" --header="User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" --header="Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7" --header="Accept-Language: es,es-ES;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6" --header="Cookie: NID=514=rDbVuBR46bfwWb7ZGVNMNkFOxxPg05DjIt11P9uXQ0EXJu5fKVCS6WJiSog67DvxW5co_5B2Vsmi36GRgx-0FyknvXYZOvFLe7_XFAQiCLRV5vbTb-zBUIlr94bnh55Yy7v4JuVRhHanylPdp6iyR6hmD9myhahTTNHNYSoF2UWSza8" --header="Connection: keep-alive" "https://drive.usercontent.google.com/download?id=15FfCjTRSlpmf1EMlxAcBh_yEfVYTmm1M&export=download&confirm=t&uuid=1937e395-157b-46d3-9dd0-4d3f91594c3f" -c -O 'idbi-workspace.tar'
+rm idbi-images.zip
 
 cd ..
