@@ -161,8 +161,7 @@ bk_db() {
 }
 
 vpn() {
-    # Cambiar al directorio especificado
-    cd ~/Escritorio/vpn || { echo "No se puede cambiar al directorio"; exit 1; }
+    cd ~/vpn || { echo "No se puede cambiar al directorio"; exit 1; }
 
     # Listar los archivos .ovpn
     archivos=( *.ovpn )
