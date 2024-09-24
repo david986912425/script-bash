@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Cambiar al directorio especificado
-cd . || { echo "No se puede cambiar al directorio"; exit 1; }
+cd ~/Escritorio/vpn || { echo "No se puede cambiar al directorio"; exit 1; }
 
 # Listar los archivos .ovpn
 archivos=( *.ovpn )
