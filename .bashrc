@@ -95,7 +95,7 @@ alias l='ls -CF'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias docker_ps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Ports}}"'
+alias dc_ps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Ports}}"'
 alias dc="bash <(curl -s https://raw.githubusercontent.com/david986912425/script-bash/main/docker_connect.sh)"
 alias lh='eza -lh'
 alias ~='cd ~'
@@ -124,20 +124,16 @@ fi
 
 ##function
 cbf() {
-    # Obtener los archivos modificados o añadidos de git (M: Modificados, A: Añadidos)
     modified_files=$(git status --porcelain | grep -E '^( M|A)' | awk '{print $2}')
 
-    # Verificar si hay archivos modificados o añadidos
     if [ -z "$modified_files" ]; then
         echo "No hay archivos modificados o añadidos para procesar."
         return 0
     fi
 
-    # Ejecutar phpcbf para los archivos modificados o añadidos
     echo "Ejecutando phpcbf en los siguientes archivos:"
     echo "$modified_files"
 
-    # Aplicar phpcbf a cada archivo encontrado
     ./vendor/bin/phpcbf --standard=phpcs.xml $modified_files
 }
 
@@ -145,37 +141,26 @@ size_top() {
     sudo du -sm * | sort -nr | head -5
 }
 
-bk_db() {
+bk() {
     local CURRENT_DATE=$(date +%F)
-
-    # Nombre del archivo de backup sin extensión
     local BACKUP_FILE="/home/david/idbi/bk/${CURRENT_DATE}_id_pos.sql"
-
-    # Crear el backup
-    docker exec -i a2119a4874b8 mysqldump -u root -p4oYwDkVNXv9cQlzEZ86b id_pos > "$BACKUP_FILE"
-
-    # Comprimir el archivo de backup
+    docker exec -i $1 mysqldump -u root -p4oYwDkVNXv9cQlzEZ86b $2 > "$BACKUP_FILE"
     gzip "$BACKUP_FILE"
-
     echo "Backup y compresión completados: ${BACKUP_FILE}.gz"
 }
 
 vpn() {
     cd ~/vpn || { echo "No se puede cambiar al directorio"; exit 1; }
 
-    # Listar los archivos .ovpn
     archivos=( *.ovpn )
 
-    # Verificar si hay archivos .ovpn en el directorio
     if [ ${#archivos[@]} -eq 0 ]; then
         echo "No se encontraron archivos .ovpn en el directorio."
         exit 1
     fi
 
-    # Permitir al usuario seleccionar un archivo usando fzf
     archivo=$(printf '%s\n' "${archivos[@]}" | fzf --height 1% --border)
 
-    # Verificar si se ha seleccionado un archivo
     if [ -n "$archivo" ]; then
         echo "Conectando a la VPN usando el archivo: $archivo"
         sudo openvpn "$archivo"
@@ -183,4 +168,15 @@ vpn() {
         echo "Selección no válida o ningún archivo seleccionado."
         exit 1
     fi
+}
+
+function top_cpu() {
+    num_results=${1:-5}
+
+    echo -e "=============================="
+    printf "%-10s %s\n" "Uso (%)" "Comando"
+    echo -e "------------------------------"
+
+    cores=$(grep -c ^processor /proc/cpuinfo)
+    ps -eo pcpu,comm | grep -v "ps" | awk -v cores="$cores" '{ if(NR>1) sum[$2] += $1 } END { for (cmd in sum) printf("%.2f\t%s\n", sum[cmd]/cores, cmd) }' | sort -nr | head -n "$num_results" | column -t
 }
