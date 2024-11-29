@@ -26,7 +26,7 @@ clone_laradock() {
 load_docker_images() {
   bash <(curl -s https://raw.githubusercontent.com/david986912425/script-bash/main/images_docker.sh)
   cd ~/imagesDocker || exit
-  docker load -i idbi-phpfpm.tar
+  docker load -i idbi-php-fpm.tar
   docker load -i idbi-mariadb.tar
   docker load -i idbi-nginx.tar
   docker load -i idbi-redis.tar
@@ -58,7 +58,6 @@ main() {
     clone_laradock
     load_docker_images
     create_database
-    install_php
     start_laradock
 }
 
